@@ -4,3 +4,6 @@
 [submodule "vim/bundle/snipmate.vim"]
 	path = vim/bundle/snipmate.vim
 	url = git://github.com/msanders/snipmate.vim.git
+[submodule "vim/bundle/mru.vim"]
+	path = vim/bundle/mru.vim
+	url = git://github.com/vim-scripts/mru.vim.git
