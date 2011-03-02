@@ -7,3 +7,6 @@
 [submodule "vim/bundle/mru.vim"]
 	path = vim/bundle/mru.vim
 	url = git://github.com/vim-scripts/mru.vim.git
+[submodule "vim/bundle/rest.vim"]
+	path = vim/bundle/rest.vim
+	url = git://github.com/vim-scripts/rest.vim.git
