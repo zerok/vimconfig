@@ -104,8 +104,6 @@ filetype plugin on
 autocmd BufNewFile,BufRead COMMIT_EDITMSG set filetype=gitcommit
 autocmd BufNewFile,BufRead *.mako set syntax=html
 autocmd BufNewFile,BufRead *.rst set syntax=rest
-autocmd BufNewFile,BufRead *.mkd set filetype=mkd
-autocmd BufNewFile,BufRead *.mdown set filetype=mkd
 autocmd BufNewFile,BufRead *.mxml set filetype=mxml
 autocmd BufNewFile,BufRead *.as set filetype=actionscript
 autocmd BufRead,BufNewFile * set path=$PWD/**
