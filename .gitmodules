@@ -16,3 +16,6 @@
 [submodule "vim/bundle/command-t"]
 	path = vim/bundle/command-t
 	url = git://github.com/wincent/Command-T.git
+[submodule "vim/bundle/osx_like"]
+	path = vim/bundle/osx_like
+	url = git://github.com/vim-scripts/osx_like.git
