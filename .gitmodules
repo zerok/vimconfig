@@ -19,3 +19,6 @@
 [submodule "vim/bundle/osx_like"]
 	path = vim/bundle/osx_like
 	url = git://github.com/vim-scripts/osx_like.git
+[submodule "vim/bundle/vim-fungitive"]
+	path = vim/bundle/vim-fungitive
+	url = git://github.com/tpope/vim-fugitive.git

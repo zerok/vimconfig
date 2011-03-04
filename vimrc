@@ -17,7 +17,7 @@ set numberwidth=5
 "" Status line stuffed with tons of info
 set ruler
 set laststatus=2
-set statusline=%F%m%r%h%w\ [TYPE=%Y\ %{&ff}]\ [%c@%l/%L\ (%p%%)]
+set statusline=%F%m%r%h%w\ %{fugitive#statusline()}\ [TYPE=%Y\ %{&ff}]\ [%c@%l/%L\ (%p%%)]
 
 "" Some custom key maps
 " The j/k mappings make vim move to the next 'visible' line instead of jumping
