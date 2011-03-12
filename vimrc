@@ -49,6 +49,8 @@ if !has("gui_running")
 else
     if has("macunix")
         set guifont=DejaVuSansMono:h14
+        nmap <D-+> :maca fontSizeUp:<CR>
+        nmap <D--> :maca fontSizeDown:<CR>
     elseif !has("unix")
         set guifont=Courier\ New:h10
     endif
