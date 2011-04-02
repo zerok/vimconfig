@@ -51,12 +51,13 @@ else
         set guifont=DejaVuSansMono:h14
         nmap <D-+> :maca fontSizeUp:<CR>
         nmap <D--> :maca fontSizeDown:<CR>
+        set guioptions-=T
     elseif !has("unix")
         set guifont=Courier\ New:h10
     endif
-    colorscheme osx_like
+    set background=dark
+    colorscheme solarized
     "" I like my guis light and wide
-    set background=light
     set cul " also highlight the current line
 
     "" Go into complete fullscreen mode
