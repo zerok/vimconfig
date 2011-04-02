@@ -56,6 +56,7 @@ else
         set guifont=Courier\ New:h10
     endif
     set background=dark
+    let g:solarized_contrast="high"
     colorscheme solarized
     "" I like my guis light and wide
     set cul " also highlight the current line
