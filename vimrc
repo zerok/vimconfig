@@ -125,3 +125,18 @@ autocmd BufReadPost *
 " Do some spell checking
 set spelllang=de,en
 set spellsuggest=5 " I only want the top 5 suggestions
+
+function! ToggleBackground()
+    if (g:solarized_style=="dark")
+    let g:solarized_style="light"
+    colorscheme solarized
+else
+    let g:solarized_style="dark"
+    colorscheme solarized
+endif
+endfunction
+command! Togbg call ToggleBackground()
+nnoremap <F5> :call ToggleBackground()<CR>
+inoremap <F5> <ESC>:call ToggleBackground()<CR>a
+vnoremap <F5> <ESC>:call ToggleBackground()<CR>
+
