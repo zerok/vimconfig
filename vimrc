@@ -140,4 +140,7 @@ command! Togbg call ToggleBackground()
 nnoremap <F5> :call ToggleBackground()<CR>
 inoremap <F5> <ESC>:call ToggleBackground()<CR>a
 vnoremap <F5> <ESC>:call ToggleBackground()<CR>
+nnoremap <F6> :GundoToggle<CR>
+inoremap <F6> <ESC>:GundoToggle<CR>a
+vnoremap <F6> <ESC>:GundoToggle<CR>
 
