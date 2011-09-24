@@ -48,7 +48,6 @@ if !has("gui_running")
     set background=dark
 else
     if has("macunix")
-        set guifont=DejaVuSansMono:h14
         set guifont=Monaco:h12
         nmap <D-+> :maca fontSizeUp:<CR>
         nmap <D--> :maca fontSizeDown:<CR>
@@ -111,6 +110,7 @@ autocmd BufNewFile,BufRead *.mako set syntax=html
 autocmd BufNewFile,BufRead *.rst set syntax=rest
 autocmd BufNewFile,BufRead *.mxml set filetype=mxml
 autocmd BufNewFile,BufRead *.as set filetype=actionscript
+autocmd BufNewFile,BufRead Vagrantfile set filetype=ruby
 autocmd BufRead,BufNewFile * set path=$PWD/**
 
 " When editing a file, always jump to the last known cursor position.
