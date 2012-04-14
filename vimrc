@@ -48,7 +48,7 @@ if !has("gui_running")
     set background=dark
 else
     if has("macunix")
-        set guifont=Monaco:h12
+        set guifont=Ubuntu\ Mono:h14
         nmap <D-+> :maca fontSizeUp:<CR>
         nmap <D--> :maca fontSizeDown:<CR>
         set guioptions-=T
@@ -56,9 +56,7 @@ else
         set guifont=Courier\ New:h10
     endif
     set background=dark
-    let g:solarized_contrast="high"
     colorscheme solarized
-    "" I like my guis light and wide
     set cul " also highlight the current line
 
     "" Go into complete fullscreen mode
@@ -67,7 +65,6 @@ else
 
     imap <C-A> <HOME>
     imap <C-E> <END>
-    imap <C-S> <Esc>:w<CR>i
     nmap <D-S-LEFT> :tabprevious<CR>
     nmap <D-S-RIGHT> :tabnext<CR>
     nmap <D-1> 1gt
@@ -111,6 +108,7 @@ autocmd BufNewFile,BufRead *.rst set syntax=rest
 autocmd BufNewFile,BufRead *.mxml set filetype=mxml
 autocmd BufNewFile,BufRead *.as set filetype=actionscript
 autocmd BufNewFile,BufRead Vagrantfile set filetype=ruby
+autocmd BufNewFile,BufRead Jakefile set filetype=javascript
 autocmd BufRead,BufNewFile * set path=$PWD/**
 
 " When editing a file, always jump to the last known cursor position.
