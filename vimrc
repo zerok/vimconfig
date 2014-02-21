@@ -1,14 +1,17 @@
-call pathogen#runtime_append_all_bundles() 
-
-if !has("unix")
-    colorscheme default
-else
-    colorscheme desert
-endif
+execute pathogen#infect()
 
 set encoding=UTF8
 set formatoptions=l
 set linebreak " break long lines automatically if appropriate
+
+" No line wrapping
+set nowrap
+
+" Tabbing with 4 spaces
+set tabstop=4
+set shiftwidth=4
+set expandtab
+set textwidth=0
 
 "" Line numbering
 set nu
@@ -24,7 +27,6 @@ set statusline=%F%m%r%h%w\ %{fugitive#statusline()}\ [TYPE=%Y\ %{&ff}]\ [%c@%l/%
 " to the next 'actual' line. Therefor if vim doesn't automatically break
 " lines but instead does some internal wrapping, you can still reach that
 " wrapped line with j and k.
-nmap <C-T> :CommandT<CR>
 nnoremap j gj
 nnoremap k gk
 nnoremap <C-f> vapgq
@@ -40,39 +42,10 @@ inoremap <Up> <C-o>gk
 "" Highlighting
 syntax enable
 
-""" If working in the console, use a dark theme
-if !has("gui_running")
-    if has("unix")
-        set term=xterm
-    endif
-    set background=dark
-else
-    if has("macunix")
-        set guifont=Ubuntu\ Mono:h14
-        nmap <D-+> :maca fontSizeUp:<CR>
-        nmap <D--> :maca fontSizeDown:<CR>
-        set guioptions-=T
-    elseif !has("unix")
-        set guifont=Courier\ New:h10
-    endif
-    set background=dark
-    colorscheme solarized
-    set cul " also highlight the current line
-
-    "" Go into complete fullscreen mode
-    "set fuoptions=maxvert,maxhorz
-    "au GUIEnter * set fullscreen
-
-    imap <C-A> <HOME>
-    imap <C-E> <END>
-    nmap <D-S-LEFT> :tabprevious<CR>
-    nmap <D-S-RIGHT> :tabnext<CR>
-    nmap <D-1> 1gt
-    nmap <D-2> 2gt
-    nmap <D-3> 3gt
-    nmap <D-4> 4gt
-    nmap <D-5> 5gt
-endif
+" Highlight the search result and do incremental searching
+set showmatch
+set hlsearch
+set incsearch
 
 set backspace=indent,eol,start
 
@@ -82,26 +55,17 @@ set wildignore=*.o,*.obj,*.bak,*.exe,*.pyc,*.DS_Store
 set swapfile! "" Don't produce swap files
 let use_xhtml = "1"
 
-"" Highlight matching braces
-set showmatch
+" Usable autoindenting
+set autoindent
+set smartindent
 
-"" Some mapping for MRU
-map <C-M> :MRU<CR>
+" Leave always at least one line above/below the rollpoint visible
+set scrolloff=1
 
-set incsearch
-"" Expand tabs to 4 spaces
-set expandtab
-set tabstop=4
-set shiftwidth=4
-"" Some indent modes. I really have to find the time to clean them up
-set ai
-set si
-set textwidth=78
-set display=lastline "avoid some ugly wrapping at the file-end when scrolling
+"" Set some custom filetypes
 filetype indent on  "indent depends on filetype
 filetype plugin on
 
-"" Set some custom filetypes
 autocmd BufNewFile,BufRead COMMIT_EDITMSG set filetype=gitcommit
 autocmd BufNewFile,BufRead *.mako set syntax=html
 autocmd BufNewFile,BufRead *.rst set syntax=rest
@@ -109,6 +73,8 @@ autocmd BufNewFile,BufRead *.mxml set filetype=mxml
 autocmd BufNewFile,BufRead *.as set filetype=actionscript
 autocmd BufNewFile,BufRead Vagrantfile set filetype=ruby
 autocmd BufNewFile,BufRead Jakefile set filetype=javascript
+autocmd BufNewFile,BufRead *.gradle set filetype=groovy
+autocmd BufNewFile,BufRead *.sublime-settings set filetype=javascript
 autocmd BufRead,BufNewFile * set path=$PWD/**
 
 " When editing a file, always jump to the last known cursor position.
@@ -125,20 +91,34 @@ autocmd BufReadPost *
 set spelllang=de,en
 set spellsuggest=5 " I only want the top 5 suggestions
 
-function! ToggleBackground()
-    if (g:solarized_style=="dark")
-    let g:solarized_style="light"
-    colorscheme solarized
-else
-    let g:solarized_style="dark"
-    colorscheme solarized
-endif
-endfunction
-command! Togbg call ToggleBackground()
-nnoremap <F5> :call ToggleBackground()<CR>
-inoremap <F5> <ESC>:call ToggleBackground()<CR>a
-vnoremap <F5> <ESC>:call ToggleBackground()<CR>
+" Key mappings
 nnoremap <F6> :GundoToggle<CR>
 inoremap <F6> <ESC>:GundoToggle<CR>a
 vnoremap <F6> <ESC>:GundoToggle<CR>
+" Disable highlighting on ctrl+l
+nnoremap <silent> <C-l> :nohl<CR><C-l>
 
+" Color Scheme
+set background=dark
+colorscheme hybrid
+
+" Set the default command for ctrl+p to the MRU listing.
+" let g:ctrlp_cmd = 'CtrlPMRU'
+set runtimepath^=~/.vim/bundle/ctrlp.vim
+
+" https://github.com/asenchi/dotvim/commit/32d561870c72c23dfecdf791f51954b82e73aa9f
+if has('autocmd')
+    augroup gofmtBuffer
+    au!
+    autocmd BufWritePre *.go :call GoFormatBuffer()
+    augroup END
+endif
+
+function! GoFormatBuffer()
+    let curr=line(".")
+    %!gofmt
+    call cursor(curr, 1)
+endfunction
+
+" Disable autofolding in riv
+let g:riv_fold_auto_update = 0
