@@ -24,7 +24,7 @@
 	url = https://github.com/godlygeek/tabular
 [submodule "vim/bundle/ultisnip"]
 	path = vim/bundle/ultisnip
-	url = https://github.com/rygwdn/ultisnips.git
+    url = https://github.com/SirVer/ultisnips.git
 [submodule "vim/bundle/scss-syntax.vim"]
 	path = vim/bundle/scss-syntax.vim
 	url = https://github.com/cakebaker/scss-syntax.vim.git
