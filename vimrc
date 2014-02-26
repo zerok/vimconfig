@@ -97,6 +97,7 @@ inoremap <F6> <ESC>:GundoToggle<CR>a
 vnoremap <F6> <ESC>:GundoToggle<CR>
 " Disable highlighting on ctrl+l
 nnoremap <silent> <C-l> :nohl<CR><C-l>
+map <C-n> :NERDTreeToggle<CR>
 
 " Color Scheme
 set background=dark
@@ -122,3 +123,4 @@ endfunction
 
 " Disable autofolding in riv
 let g:riv_fold_auto_update = 0
+
