@@ -17,6 +17,8 @@ set textwidth=0
 set nu
 set numberwidth=5
 
+set cursorline " highlight the current number
+
 "" Status line stuffed with tons of info
 set ruler
 set laststatus=2
@@ -95,6 +97,7 @@ set spellsuggest=5 " I only want the top 5 suggestions
 nnoremap <F6> :GundoToggle<CR>
 inoremap <F6> <ESC>:GundoToggle<CR>a
 vnoremap <F6> <ESC>:GundoToggle<CR>
+map <C-m> :CtrlPMRUFiles<CR>
 " Disable highlighting on ctrl+l
 nnoremap <silent> <C-l> :nohl<CR><C-l>
 map <C-n> :NERDTreeToggle<CR>
@@ -104,8 +107,22 @@ set background=dark
 colorscheme hybrid
 
 " Set the default command for ctrl+p to the MRU listing.
-" let g:ctrlp_cmd = 'CtrlPMRU'
+let g:ctrlp_cmd = 'CtrlP'
+let g:ctrlp_working_path_mode = 'ra'
 set runtimepath^=~/.vim/bundle/ctrlp.vim
+" Use The Silver Searcher https://github.com/ggreer/the_silver_searcher
+" Thanks to https://twitter.com/nickstenning/status/441602363410104320
+if executable('ag')
+    " Use Ag over Grep
+    set grepprg=ag\ --nogroup\ --nocolor
+
+    " Use ag in CtrlP for listing files. Lightning fast and respects
+    " .gitignore
+    let g:ctrlp_user_command = 'ag %s -l --nocolor -g ""'
+
+    " ag is fast enough that CtrlP doesn't need to cache
+    let g:ctrlp_use_caching = 0
+endif
 
 " https://github.com/asenchi/dotvim/commit/32d561870c72c23dfecdf791f51954b82e73aa9f
 if has('autocmd')
@@ -120,7 +137,12 @@ function! GoFormatBuffer()
     %!gofmt
     call cursor(curr, 1)
 endfunction
+set runtimepath+=$GOROOT/misc/vim
 
 " Disable autofolding in riv
 let g:riv_fold_auto_update = 0
+
+set omnifunc=syntaxcomplete#Complete
+
+set mouse=a " To enable mouse scrolling etc.
 
