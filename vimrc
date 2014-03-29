@@ -146,3 +146,9 @@ set omnifunc=syntaxcomplete#Complete
 
 set mouse=a " To enable mouse scrolling etc.
 
+let g:pencil#wrapModeDefault = 'hard'   " or 'soft'
+augroup pencil
+    autocmd!
+    autocmd FileType markdown call pencil#init()
+    autocmd FileType text call pencil#init({'wrap': 'hard'})
+augroup END
